@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="/css/style.css">
-  <meta charset="utf-8">
-  <title>Company Coffee</title>
-  <meta name="description" content="">
+<div> 
+    <h1>Company Coffee</h1>
+    <p> This is the menu page </p>
+    <p>Hi user_name , </a></p>
     
-</head>
-<body>
-    
-    <div> 
-        <h1>Company Coffee</h1>
-        <p> This is the menu page </p>
-        <p>Hi <%= @users.user_name %> , </a></p>
-        
-    </div>
-</body>
-</html>
+    <form method=:link action="/coffee_page">
+        <input type = "Submit" value="Coffee">
+    </form>
+    <form method=:link action="/mocha_page">
+        <input type = "Submit" value="Mocha">
+    </form>
+</div>
