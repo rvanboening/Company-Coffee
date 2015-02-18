@@ -1,12 +1,14 @@
 <div> 
     <h1>Company Coffee</h1>
     <p> This is the menu page </p>
-    <p>Hi user_name , </a></p>
+    <p>Hi <%=@user.user_name%> </a></p>
     
     <form method=:link action="/coffee_page">
+        <input type ="hidden" name="user_id" value="<%=@user.user_id%>">
         <input type = "Submit" value="Coffee">
     </form>
     <form method=:link action="/mocha_page">
+        <input type ="hidden" name="user_id" value="<%=@user.user_id%>">
         <input type = "Submit" value="Mocha">
     </form>
 </div>
