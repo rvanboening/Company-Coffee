@@ -1,0 +1,20 @@
+<div>
+<h1>Company Coffee </h1>
+
+<h2> Here are the records from the <%=@table_name %> tables</h2>
+
+<% @table_data.each do |hash| %>
+<p> <%= hash["drink"] %> - <b> 
+    <%= hash["size"] %> - <b> 
+    <%= hash["reg_decaf"] %> - <b> 
+    <%= hash["cream"] %> - <b>
+    <%= hash["sugar"]%> - <b>
+    <%= hash["reg_skim"] %> - <b> 
+    <%= hash["whip_nowhip"] %> - <b> 
+    <%= hash["flavor"] %> - <b> 
+    <%= hash["cream"] %> - <b>
+    <%= hash["wet_dry"]%>
+</p>
+<% end %>
+
+</div>

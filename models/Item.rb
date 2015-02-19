@@ -26,10 +26,10 @@ class Item
     sql_command_pop_order_table = "INSERT INTO orders (item_id, user_id) VALUES (#{@item_id}, #{user_id})"
     DATABASE.execute(sql_command_pop_order_table)
   end
-  #
-  # def fetch order id
-  #
-  # end
+
+  def self.fetch_orders
+    DATABASE.exectute("SELECT * FROM items")
+  end
   #
   # def print orders  
   #
