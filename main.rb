@@ -34,6 +34,13 @@ get "/success" do
 end
 
 get "/barista" do
-  items_to_make.fetch_ordes
-  erb :barista, :layout => :boilerplate
+   erb :barista, :layout => :boilerplate
 end
+
+get "/barista_order_page" do
+  # print_orders=Item.fetch_orders
+  erb :barista_order_page, :layout => :boilerplate
+end
+
+
+

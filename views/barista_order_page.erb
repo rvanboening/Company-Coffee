@@ -1,0 +1,18 @@
+
+    <h1>Company Coffee</h1>
+    <p>Hi this is the barista order page </a></p
+    <p>
+    <%print_orders=Item.fetch_orders%>
+    <%print_orders.each do |hash|%>
+    <%= hash["drink"]%> -<b>
+    <%= hash["size"]%> -<b>
+    <%= hash["reg_decaf"]%> -<b>
+    <%= hash["cream"]%> -<b>
+    <%= hash["sugar"]%> -<b>
+    <%= hash["reg_skim"]%> -<b>
+    <%= hash["whip_nowhip"]%> -<b>
+    <%= hash["flavor"]%> -<b>
+    <%= hash["wet_dry"]%> -<b>
+    </p>
+    <%end%>
+    

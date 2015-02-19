@@ -5,7 +5,7 @@ DATABASE.results_as_hash = true
 DATABASE.execute("CREATE TABLE IF NOT EXISTS items (item_id INTEGER PRIMARY KEY,
                   drink TEXT, size TEXT, reg_decaf TEXT, cream TEXT,
                   sugar TEXT, reg_skim TEXT, whip_nowhip TEXT,
-                  flavor TEXT, wet_dry TEXT)")
+                  flavor TEXT, wet_dry TEXT, order_made TEXT)")
                   
 DATABASE.execute("CREATE TABLE IF NOT EXISTS users (user_id INTEGER PRIMARY KEY, 
                   user_name TEXT, office_num INTEGER)")
