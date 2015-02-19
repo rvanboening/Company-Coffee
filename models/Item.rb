@@ -3,7 +3,7 @@
 # require_relative "../database_setup"
 
 class Item
-  attr_reader :user_id, :drink, :size, :reg_decaf, :cream, :sugar, :reg_skim, :whip_nowhip, :flavor, :wet_dry
+  attr_reader :user_id, :drink, :size, :reg_decaf, :cream, :sugar, :reg_skim, :whip_nowhip, :flavor, :wet_dry, :order_made
   
   def initialize(options)
       @item_id      =options["item_id"]
@@ -43,14 +43,18 @@ class Item
   # no changes
    
   # Lists all items for barista
-  def self.fetch_orders
+  def self.fetch_all_orders
      DATABASE.execute("SELECT * FROM items")
   end
-  #
-  # def print orders  
-  #
-  # end
+  
+  def self.fetch_orders
+     DATABASE.execute("SELECT * FROM items WHERE order_made = 'Order'")
+  end
+  
+  def self.edit(made_item_id)
+    DATABASE.execute("UPDATE items SET order_made='Made' WHERE item_id = '#{made_item_id}'")
+  end
+  
 end
-
 
   

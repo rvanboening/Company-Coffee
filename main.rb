@@ -37,8 +37,10 @@ get "/barista" do
    erb :barista, :layout => :boilerplate
 end
 
+#before refresh page
 get "/barista_order_page" do
-  # print_orders=Item.fetch_orders
+  made_item_id=params["item_id"]
+  made_item = Item.edit(made_item_id)
   erb :barista_order_page, :layout => :boilerplate
 end
 
