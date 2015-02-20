@@ -55,6 +55,21 @@ class Item
     DATABASE.execute("UPDATE items SET order_made='Made' WHERE item_id = '#{made_item_id}'")
   end
   
+  def self.print(made_item_id)
+    # This method = an array of hashes. 
+    array_of_hashes = DATABASE.execute("SELECT * FROM items WHERE item_id = '#{made_item_id}'")
+    # Because there is only one item in the array 0 will = the 1st hash inside the array. 
+    h = array_of_hashes[0]
+    # This selects the user id out of the hash. 
+    u = h["user_id"]
+    # This is fetching the user info from the user id that i got out of the array of hashes
+    user_info = DATABASE.execute("SELECT * FROM users WHERE user_id = #{u}")
+    
+    
+    ### DO THIS  ###  add user_id to my Items table. Acutally i need to make sure my item_user table is being updated so I can pull all the info out of those tbles using the Database.execute method. 
+    
+  end
+  
 end
 
   

@@ -1,0 +1,5 @@
+Ideas for Gems
+
+https://rubygems.org/gems/pdf-labels         - NO
+
+https://github.com/jordanbyron/prawn-labels
