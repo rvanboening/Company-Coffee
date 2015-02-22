@@ -1,12 +1,12 @@
-# require 'pry'
-# require 'SQLite3'
-# require_relative "../database_setup"
+ # require 'pry'
+ # require 'SQLite3'
+ # require_relative "../database_setup"
 
 class Item
   attr_reader :user_id, :drink, :size, :reg_decaf, :cream, :sugar, :reg_skim, :whip_nowhip, :flavor, :wet_dry, :order_made
   
   def initialize(options)
-      @item_id      =options["item_id"]
+      @item_id      =options["item_id"]   #primary key
       @drink        =options["drink"]
       @size         =options["size"]
       @reg_decaf    =options["reg_decaf"]
@@ -17,11 +17,24 @@ class Item
       @flavor       =options["flavor"]
       @wet_dry      =options["wet_dry"]
       @order_made   =options["order_made"]
+      @user_id      =options["user_id"]
     end
-    
+  
+  # Public: #insert drink into database
+  #
+  # Parameters: 
+  #  user_id - #Integer -ID that is assigned to the user    
+  #
+  # Returns:
+  # NA
+  #
+  # State Changes:
+  # Adds a record to the last row of the items database
+  # Adds a record to the orders table
+  #
   def insert(user_id) 
-    sql_command="INSERT INTO items (drink, size, reg_decaf, cream, sugar, reg_skim, whip_nowhip, flavor, wet_dry, order_made) 
-                  VALUES ('#{@drink}', '#{size}', '#{@reg_decaf}', '#{@cream}', '#{@sugar}', '#{@reg_skim}', '#{@whip_nowhip}', '#{@flavor}', '#{@wet_dry}', '#{order_made}')"
+    sql_command="INSERT INTO items (user_id, drink, size, reg_decaf, cream, sugar, reg_skim, whip_nowhip, flavor, wet_dry, order_made) 
+                  VALUES ('#{user_id}', '#{@drink}', '#{size}', '#{@reg_decaf}', '#{@cream}', '#{@sugar}', '#{@reg_skim}', '#{@whip_nowhip}', '#{@flavor}', '#{@wet_dry}', '#{order_made}')"
 
     DATABASE.execute(sql_command)
     @item_id = DATABASE.last_insert_row_id
@@ -56,20 +69,25 @@ class Item
   end
   
   def self.print(made_item_id)
-    # This method = an array of hashes. 
-    array_of_hashes = DATABASE.execute("SELECT * FROM items WHERE item_id = '#{made_item_id}'")
-    # Because there is only one item in the array 0 will = the 1st hash inside the array. 
-    h = array_of_hashes[0]
-    # This selects the user id out of the hash. 
-    u = h["user_id"]
-    # This is fetching the user info from the user id that i got out of the array of hashes
-    user_info = DATABASE.execute("SELECT * FROM users WHERE user_id = #{u}")
     
+    # This method = an array of hashes.
+    order = DATABASE.execute("SELECT * FROM items WHERE item_id = '#{made_item_id}'")
     
-    ### DO THIS  ###  add user_id to my Items table. Acutally i need to make sure my item_user table is being updated so I can pull all the info out of those tbles using the Database.execute method. 
+    # Because there is only one item in the array 0 will = the 1st hash inside the array.
+    h = order[0]
+    o = h["user_id"]
+    user_info = DATABASE.execute("SELECT * FROM users WHERE user_id = '#{o}'")
+    
+    filename = "print_orders.pdf"
+  
+    Prawn::Labels.generate(filename, order, :type => "Avery5160") do |pdf, o|
+    
+    pdf.text "Order for:  #{o["item_id"]}.\n#{o["drink"]}.\n#{o["size"]}.\n
+                            #{o["reg_decaf"]}.\n#{o["cream"]}.\n#{o["sugar"]}.\n#{o["reg_skim"]}.\n
+                            #{o["whip_nowhip"]}.\n#{o["flavor"]}.\n#{o["wet_dry"]}"
+                            end
     
   end
-  
 end
 
-  
+# binding.pry

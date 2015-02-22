@@ -14,8 +14,13 @@ class User
     DATABASE.execute(sql_command)
     
     @user_id = DATABASE.last_insert_row_id
+
     # sql_command_pop_order_table = "INSERT INTO orders (user_id) VALUES ('#{@user_id}')"
 #     DATABASE.execute(sql_command_pop_order_table)
+  end
+  
+  def self.print_user(made_item_id)
+    DATABASE.execute("SELECT * FROM users WHERE user_id = '#{made_item_id}'")
   end
 end
 
