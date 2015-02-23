@@ -37,10 +37,11 @@ get "/latte_page" do
   erb :latte_page, :layout => :boilerplate
 end
 
-get "cappuccino_page" do
+get "/cappuccino_page" do
   @user_id=params["user_id"]
   erb :cappuccino_page, :layout => :boilerplate
 end
+
 
 get "/success" do
   user_id=params["user_id"]
