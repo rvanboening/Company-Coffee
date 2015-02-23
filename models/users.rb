@@ -1,3 +1,11 @@
+# Class: Guest
+# manages the 
+# 
+# Attributes: 
+# @user_id    - Integer- primary Key
+# @user_name  - String- name of the user
+# @office_num - Integer- office number of the user
+# 
 class User 
   attr_accessor :user_id, :user_name, :office_num, :order_num
   attr_reader :user_id, :user_name, :office_num, :order_num
@@ -8,7 +16,10 @@ class User
     @office_num =options["office_num"]
   end
   
-  # Take the current object and insert it as a new record into the users table
+  
+  # Public Insert
+  # Take the current object and insert it as a new record into the users table 
+  #
   def insert
     sql_command="INSERT INTO users (user_name, office_num) VALUES ('#{@user_name}', '#{@office_num}')"
     DATABASE.execute(sql_command)
